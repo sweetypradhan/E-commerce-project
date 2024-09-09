@@ -39,15 +39,15 @@ const Grocery = () => {
       {groceryProducts.length > 0 ? (
         <ul className="grocery-product-list">
           {groceryProducts.map(product => (
-           <Link to={`/product/${product.id}`} className='product-link'>
             <li key={product.id} className="grocery-product-item">
-              <img src={product.images[0]} alt={product.title} className="grocery-product-image" />
-              <h3 className="grocery-product-title">{product.title}</h3>
-              <p className="grocery-product-description">{product.description}</p>
-              <p className="grocery-product-price">Price: ${product.price}</p>
-              <p className="grocery-product-rating">Rating: {product.rating}</p>
+              <Link to={`/product/${product.id}`} className='product-link'>
+                <img src={product.images[0]} alt={product.title} className="grocery-product-image" />
+                <h3 className="grocery-product-title">{product.title}</h3>
+                <p className="grocery-product-description">{product.description}</p>
+                <p className="grocery-product-price">Price: ${product.price}</p>
+                <p className="grocery-product-rating">Rating: {product.rating}</p>
+              </Link>
             </li>
-            </Link>
           ))}
         </ul>
       ) : (
