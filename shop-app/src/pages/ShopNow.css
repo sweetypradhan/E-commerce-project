@@ -1,0 +1,131 @@
+/* General styling for the shop page */
+.shop-now-page {
+  padding: 20px;
+}
+
+/* Heading styling */
+.shop-now-page h1 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Search bar styling */
+.search-bar {
+  width: 400px;
+  margin: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* Container for the list of products */
+.products-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Individual product card */
+.product-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  max-width: 300px; /* Limit the width of each card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  background-color: #fff;
+}
+
+/* Hover effect for product cards */
+.product-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Link styling within the card */
+.product-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Product title styling */
+.product-title {
+  font-size: 1em;
+  margin: 0 0 8px;
+  color: #222;
+}
+
+/* Fixed size for product image */
+.product-image {
+  width: 120px; 
+  height: 120px; 
+  object-fit: cover; 
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+/* Product description styling */
+.product-description {
+  font-size: 0.8em;
+  color: #666;
+  margin: 0 0 8px;
+}
+
+/* Product price styling */
+.product-price {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 8px;
+}
+
+/* Product rating styling */
+.product-rating {
+  font-size: 0.8em;
+  color: #f39c12;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .search-bar {
+      width: 300px;
+      margin: 40px auto;
+  }
+
+  .product-item {
+      width: 100%;
+      max-width: 250px; /* Adjust max-width for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+      width: 250px;
+      margin: 40px auto;
+  }
+
+  .product-item {
+      width: 100%;
+      max-width: 200px; /* Adjust max-width for small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+      width: 100%;
+      margin: 20px auto; /* Adjust margin for very small screens */
+  }
+
+  .product-item {
+      width: 100%;
+      max-width: 100%; /* Make cards full-width on very small screens */
+  }
+}

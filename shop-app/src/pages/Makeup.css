@@ -1,0 +1,121 @@
+.makeup-page {
+    padding: 20px;
+  }
+  
+  /* Heading for the Makeup page */
+  .makeup-page h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Sorting options */
+  .sort-options {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Label for sorting dropdown */
+  .sort-options label {
+    font-size: 1em;
+    color: #333;
+    margin-right: 10px;
+  }
+  
+  /* Dropdown styling */
+  .sort-options select {
+    font-size: 1em;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+  }
+  
+  /* Dropdown hover effect */
+  .sort-options select:hover {
+    border-color: #aaa;
+  }
+  
+  /* Dropdown focus effect */
+  .sort-options select:focus {
+    border-color: #007bff; 
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.25); 
+  }
+  
+  /* Container for the list of products */
+  .products-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  /* Individual product card */
+  .product-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    width: calc(25% - 15px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  /* Hover effect for product cards */
+  .product-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Link styling within the card */
+  .product-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  
+  /* Product title styling */
+  .product-title {
+    font-size: 1em;
+    margin: 0 0 8px;
+    color: #222;
+  }
+  
+  /* Fixed size for product image */
+  .product-image {
+    width: 120px; /* Fixed width */
+    height: 120px; /* Fixed height */
+    object-fit: cover; 
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  
+  /* Product description styling */
+  .product-description {
+    font-size: 0.8em;
+    color: #666;
+    margin: 0 0 8px;
+  }
+  
+  /* Product price styling */
+  .product-price {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 8px;
+  }
+  
+  /* Product rating styling */
+  .product-rating {
+    font-size: 0.8em;
+    color: #f39c12;
+  }
+  

@@ -1,0 +1,76 @@
+.product-detail {
+  padding: 20px;
+  max-width: 800px; 
+  margin: 10px auto; /* Centered horizontally */
+  background-color: #f9f9f9; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* Heading for product detail */
+.product-detail h1 {
+  font-size: 2.5em;
+  color: #333; 
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold; 
+}
+
+/* Image styling for product detail */
+.product-detail-image {
+  max-width: 50%; 
+  height: auto; 
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 20px; /* Centered image with margin below */
+}
+
+/* Description styling */
+.product-detail-description {
+  font-size: 1.2em; 
+  color: #666; 
+  margin-bottom: 20px;
+  line-height: 1.6; 
+}
+
+/* Price styling */
+.product-detail-price {
+  font-size: 1.4em; /* Larger font size for emphasis */
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center; /* Center the price */
+}
+
+/* Rating styling */
+.product-detail-rating {
+  font-size: 1.2em; 
+  color: #f39c12; 
+  text-align: center; /* Center the rating */
+}
+
+/* Button styling */
+.add-to-cart-button {
+  display: block;
+  width: 30%;
+  padding: 12px;
+  margin-left: 270px;
+  margin-top: 8px;
+  font-size: 1.1em;
+  color: #fff;
+  background-color: rgba(242, 159, 5, 0.986); 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+}
+
+.add-to-cart-button:hover {
+  background-color: #0056b3; 
+  transform: scale(1.05); 
+}
+
+.add-to-cart-button:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
