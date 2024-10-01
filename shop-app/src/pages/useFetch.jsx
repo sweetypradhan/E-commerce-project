@@ -17,9 +17,10 @@ const useFetch = (url) => {
       try {
         // Perform the fetch request to the provided URL
         const response = await fetch(url);
-        
+        console.log('Response:', response);
         // Check if the response is OK 
         if (!response.ok) {
+            const errorDetails = await response.text();
           // If not OK, throw an error
           throw new Error('Network response was not ok');
         }
@@ -49,3 +50,5 @@ const useFetch = (url) => {
 };
 
 export default useFetch;
+
+

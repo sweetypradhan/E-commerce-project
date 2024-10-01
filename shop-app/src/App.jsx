@@ -12,6 +12,7 @@ import Furniture from './pages/Furniture';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Error from './pages/Error';
+import Signup from './pages/Signup';
 
 // Lazy load the ShopNow component
 const ShopNow = lazy(() => import('./pages/ShopNow'));
@@ -28,6 +29,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path='/Login' element={<Login />} />
+            <Route path="/Signup" element={<Signup />} />
             <Route path='/Cart' element={<Cart />} />
             <Route path='/Makeup' element={<Makeup />} />
             <Route path='/Fragrances' element={<Fragrances />} />
