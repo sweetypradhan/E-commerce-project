@@ -49,7 +49,7 @@ const Checkout = () => {
           <ul className="checkout-items">
             {/* Iterate over cart items to display each item */}
             {cartItems.map(item => (
-              <li key={item.id} className="checkout-item">
+              <li key={item._id} className="checkout-item">
                 <img src={item.image} alt={item.title} className="checkout-item-image" />
                 <div className="checkout-item-details">
                   <h3 className="checkout-item-title">{item.title}</h3>

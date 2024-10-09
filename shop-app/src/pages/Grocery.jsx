@@ -1,12 +1,12 @@
 import React from 'react';
-import useFetch from './useFetch';
-import './Grocery.css'; 
-import { Link } from 'react-router-dom';
+import useFetch from './useFetch'; // Import your custom hook
+import './Grocery.css'; // Import the CSS file for styling
+import { Link } from 'react-router-dom'; // For navigation
 import { Bars } from 'react-loader-spinner';
 
 const Grocery = () => {
-  // Use the useFetch hook to fetch products
-  const { data: allProducts, loading, error } = useFetch("https://dummyjson.com/products");
+  const accessToken = localStorage.getItem('accessToken'); // Get access token
+  const { data, loading, error } = useFetch("http://localhost:5000/api/products", accessToken); 
 
   if (loading) {
     return (
@@ -27,11 +27,14 @@ const Grocery = () => {
     return <p>Error: {error.message || 'An error occurred'}</p>;
   }
 
-  // Assuming `allProducts` contains a 'products' array and a 'category' field
-  const products = allProducts?.products || [];
+  // Log all products for debugging
+  console.log("All Products:", data);
 
-  // Filter products by category 
-  const groceryProducts = products.filter(product => product.category === 'groceries');
+  // Assuming data is an array of products
+  const products = data || [];
+
+  // Filter products for the 'groceries' category
+  const groceryProducts = products.filter(product => product.category.toLowerCase() === 'groceries');
 
   return (
     <div className="grocery-container">
@@ -39,9 +42,9 @@ const Grocery = () => {
       {groceryProducts.length > 0 ? (
         <ul className="grocery-product-list">
           {groceryProducts.map(product => (
-            <li key={product.id} className="grocery-product-item">
-              <Link to={`/product/${product.id}`} className='product-link'>
-                <img src={product.images[0]} alt={product.title} className="grocery-product-image" />
+            <li key={product._id} className="grocery-product-item">
+              <Link to={`/product/${product._id}`} className='product-link'>
+                <img src={product.images} alt={product.title} className="grocery-product-image" />
                 <h3 className="grocery-product-title">{product.title}</h3>
                 <p className="grocery-product-description">{product.description}</p>
                 <p className="grocery-product-price">Price: ${product.price}</p>

@@ -8,7 +8,7 @@ function Error() {
      
       <div className="error-link">
         {/* Link to navigate back to the home page */}
-        <Link to="/" className="back-to-home">Back to Home</Link>
+        <Link to="/Home" className="back-to-home">Back to Home</Link>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Custom hook for fetching data from a given URL
-const useFetch = (url) => {
+const useFetch = (url, Token) => {
   // State to store the fetched data
   const [data, setData] = useState(null);
   
@@ -16,8 +16,14 @@ const useFetch = (url) => {
     const fetchData = async () => {
       try {
         // Perform the fetch request to the provided URL
-        const response = await fetch(url);
-        console.log('Response:', response);
+        const response = await fetch( `${url}`, {
+          method: 'get',
+          headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json',
+              'Authorization': `JWT ${Token}`
+          }})
+        
         // Check if the response is OK 
         if (!response.ok) {
             const errorDetails = await response.text();

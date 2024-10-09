@@ -3,6 +3,7 @@ import productModel from "../Model/product.model.js";
 export function createProduct(req,res) {
     const { title, description, category, price, discountPercentage, rating, images, stock } = req.body;
 
+    // Create a new product instance with the provided details
     const newProduct = new productModel ({
         title: title,
         description: description,
@@ -14,6 +15,7 @@ export function createProduct(req,res) {
         stock: stock
     });
 
+    // Save the new product to the database
     newProduct.save().then(data => {
         if(!data) {
             return res.status(400).json({message: "Something went wrong"});
@@ -23,6 +25,7 @@ export function createProduct(req,res) {
     });
 }
 
+//Fetches all products from the database
 export function fetchProducts(req,res) {
     productModel.find().then((data) => {
         if(!data) {
@@ -33,6 +36,7 @@ export function fetchProducts(req,res) {
     }).catch(err => res.status(500).json({message: "Internal Server Error" || err.message }))
 }
 
+//Fetche product by id from the database
 export function fetchProductById(req, res){
     const { id } = req.params;
 
@@ -41,6 +45,6 @@ export function fetchProductById(req, res){
             return res.status(400).send("Product not found");
         }
 
-        res.send(data);
+        res.send(data); // Respond with the fetched product data
     }).catch(err => res.status(500).json({message: "Internal Server Error" || err.message }))
 }

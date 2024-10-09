@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useFetch from './useFetch'; // Import your custom hook
 import { Link } from 'react-router-dom'; // For navigation
 import './Makeup.css'; // Import the CSS file for styling
 import { Bars } from 'react-loader-spinner';
 
 const Makeup = () => {
-  // Use the useFetch hook to fetch products
-  const { data: allProducts, loading, error } = useFetch("https://dummyjson.com/products");
-
-  const [sortCriteria, setSortCriteria] = useState('priceAsc');
+  const accessToken = localStorage.getItem('accessToken'); // Get access token 
+  const { data, loading, error } = useFetch("http://localhost:5000/api/products", accessToken); // Fetch products
 
   if (loading) {
     return (
@@ -29,66 +27,33 @@ const Makeup = () => {
     return <p>Error: {error.message || 'An error occurred'}</p>;
   }
 
-  // Assuming `allProducts` contains a 'products' array
-  const products = allProducts?.products || [];
+  // Log all products for debugging
+  console.log("All Products:", data);
 
-  // Filter products for beauty category 
-  const beautyProducts = products.filter(product => product.category === 'beauty');
+  // Assuming data is an array of products
+  const products = data || [];
 
-  // Sort the products based on selected criteria
-  const sortedProducts = beautyProducts.sort((a, b) => {
-    switch (sortCriteria) {
-      case 'priceAsc':
-        return a.price - b.price;
-      case 'priceDesc':
-        return b.price - a.price;
-      case 'ratingAsc':
-        return a.rating - b.rating;
-      case 'ratingDesc':
-        return b.rating - a.rating;
-      case 'nameAsc':
-        return a.title.localeCompare(b.title);
-      case 'nameDesc':
-        return b.title.localeCompare(a.title);
-      default:
-        return 0;
-    }
-  });
+  // Filter products for the 'beauty' category
+  const beautyProducts = products.filter(product => product.category.toLowerCase() === 'beauty');
+  
 
   return (
     <div className="makeup-page">
       <h1>Beauty Products</h1>
-
-      <div className="sort-options">
-        <label htmlFor="sort">Sort by:</label>
-        <select
-          id="sort"
-          value={sortCriteria}
-          onChange={(e) => setSortCriteria(e.target.value)}
-        >
-          <option value="priceAsc">Price: Low to High</option>
-          <option value="priceDesc">Price: High to Low</option>
-          <option value="ratingAsc">Rating: Low to High</option>
-          <option value="ratingDesc">Rating: High to Low</option>
-          <option value="nameAsc">Name: A to Z</option>
-          <option value="nameDesc">Name: Z to A</option>
-        </select>
-      </div>
-
-      {sortedProducts.length > 0 ? (
-        <ul className='products-list'>
-          {sortedProducts.map(product => (
-            <li key={product.id} className='product-item'>
-              <Link to={`/product/${product.id}`} className='product-link'>
+      {beautyProducts.length > 0 ? (
+        <div className='products-grid'>
+          {beautyProducts.map(product => (
+            <Link to={`/product/${product._id}`} key={product._id} className='product-card'>
+              <img src={product.images} alt={product.title} className='product-image' />
+              <div className='product-info'>
                 <h3 className='product-title'>{product.title}</h3>
-                <img src={product.images[0]} alt={product.title} className='product-image' />
                 <p className='product-description'>{product.description}</p>
                 <p className='product-price'>Price: ${product.price}</p>
                 <p className='product-rating'>Rating: {product.rating}</p>
-              </Link>
-            </li>
+              </div>
+            </Link>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>No beauty products found.</p>
       )}

@@ -1,12 +1,12 @@
-import React from 'react';
-import useFetch from './useFetch';
+import React, { useState } from 'react';
+import useFetch from './useFetch'; // Import your custom hook
 import './Furniture.css'; // Import the CSS file for styling
 import { Link } from 'react-router-dom'; // For navigation
 import { Bars } from 'react-loader-spinner';
 
 const Furniture = () => {
-  // Use the useFetch hook to fetch products
-  const { data: allProducts, loading, error } = useFetch("https://dummyjson.com/products");
+  const accessToken = localStorage.getItem('accessToken'); //  access token
+  const { data, loading, error } = useFetch("http://localhost:5000/api/products", accessToken); 
 
   if (loading) {
     return (
@@ -27,11 +27,14 @@ const Furniture = () => {
     return <p>Error: {error.message || 'An error occurred'}</p>;
   }
 
-  // Assuming 'allProducts' contains a 'products' array and a 'category' field
-  const products = allProducts?.products || [];
+  // Log all products for debugging
+  console.log("All Products:", data);
+  
+  // Assuming data is an array of products
+  const products = data || [];
 
-  // Filter products by category 
-  const furnitureProducts = products.filter(product => product.category === 'furniture');
+  // Filter products for furniture category
+  const furnitureProducts = products.filter(product => product.category.toLowerCase() === 'furniture');
 
   return (
     <div className="furniture-page">
@@ -39,10 +42,9 @@ const Furniture = () => {
       {furnitureProducts.length > 0 ? (
         <ul className="products-list">
           {furnitureProducts.map(product => (
-            <li key={product.id} className="product-item">
-              
-              <Link to={`/product/${product.id}`} className="product-link">
-                <img src={product.images[0]} alt={product.title} className="product-image" />
+            <li key={product._id} className="product-item">
+              <Link to={`/product/${product._id}`} className="product-link">
+                <img src={product.images} alt={product.title} className="product-image" />
                 <h3 className="product-title">{product.title}</h3>
                 <p className="product-description">{product.description}</p>
                 <p className="product-price">Price: ${product.price}</p>

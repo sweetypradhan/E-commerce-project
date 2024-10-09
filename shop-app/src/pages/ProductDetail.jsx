@@ -12,32 +12,44 @@ const ProductDetail = () => {
   const dispatch = useDispatch(); // Hook to dispatch actions to the Redux store
 
   useEffect(() => {
-    // Function to fetch product details from API
     const fetchProduct = async () => {
+      if (!id) {
+        console.error('Product ID is undefined');
+        setError(new Error('Product ID is missing'));
+        setLoading(false);
+        return;
+      }
+  
       try {
-        const response = await fetch(`https://dummyjson.com/products/${id}`);
+        const response = await fetch(`http://localhost:5000/api/product/${id}`);
+        console.log('Fetching product with ID:', id);
         if (!response.ok) {
-          throw new Error('Product not found'); // Handle non-200 responses
+          throw new Error('Product not found');
         }
-        const data = await response.json(); // Parse the JSON data
-        setProduct(data); // Update the state with the product data
-        setLoading(false); // Set loading to false after data is fetched
+        const data = await response.json();
+        setProduct(data);
       } catch (error) {
-        setError(error); // Update the state with the error
-        setLoading(false); // Set loading to false even if there's an error
+        setError(error);
+      } finally {
+        setLoading(false);
       }
     };
+  
+    fetchProduct();
+  }, [id]);
+  
 
-    fetchProduct(); // Call the fetchProduct function to get product details
-  }, [id]); // Dependency array: re-fetch if `id` changes
+
+
+
 
   const handleAddToCart = () => {
     if (product) {
       const cartItem = {
-        id: product.id,
+        _id: product._id,
         title: product.title,
         price: product.price,
-        image: product.images[0],
+        image: product.images,
         quantity: 1, // Default quantity of the product
       };
       dispatch({ type: 'ADD_TO_CART', payload: cartItem }); // Dispatch action to add item to the cart
@@ -60,7 +72,7 @@ const ProductDetail = () => {
   return (
     <div className="product-detail">
       <h1>{product.title}</h1> {/* Display the product title */}
-      <img src={product.images[0]} alt={product.title} className="product-detail-image" /> {/* Display the product image */}
+      <img src={product.images} alt={product.title} className="product-detail-image" /> {/* Display the product image */}
       <p className="product-detail-description">{product.description}</p> {/* Display the product description */}
       <p className="product-detail-price">Price: ${product.price}</p> {/* Display the product price */}
       <p className="product-detail-rating">Rating: {product.rating}</p> {/* Display the product rating */}
@@ -72,3 +84,9 @@ const ProductDetail = () => {
 };
 
 export default ProductDetail;
+
+
+
+
+
+

@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import Header from './component/header';
+import Header from './component/Header';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Importing routing components
 import Login from './pages/Login';
 import Footer from './component/Footer';
@@ -26,10 +26,10 @@ function App() {
         <Suspense fallback={<div>Loading...</div>}>
          {/* Routes component defines all the routes of the application */}
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<Login />} /> {/* Updated to render Login */}
+            <Route path="/home" element={<Home />} /> {/* Optional route for Home */}
             <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path='/Login' element={<Login />} />
-            <Route path="/Signup" element={<Signup />} />
+            <Route path='/Signup' element={<Signup />} />
             <Route path='/Cart' element={<Cart />} />
             <Route path='/Makeup' element={<Makeup />} />
             <Route path='/Fragrances' element={<Fragrances />} />

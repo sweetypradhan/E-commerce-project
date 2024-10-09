@@ -22,7 +22,7 @@ function Header() {
 
         <div className="nav-menu">
           <ul>
-            <Link to="/" style={{textDecoration:"none"}}>
+            <Link to="/Home" style={{textDecoration:"none"}}>
               <li>Home</li>
             </Link>
             <Link to="/Makeup" style={{textDecoration:"none"}}>
@@ -35,7 +35,7 @@ function Header() {
         </div>
 
         <div className="nav-icon">
-          <Link to="/Login" style={{textDecoration:"none", color:"black"}}>
+          <Link to="/" style={{textDecoration:"none", color:"black"}}>
             <FontAwesomeIcon icon={faUser} />
           </Link>
           <Link to="/Cart" style={{textDecoration:"none", color:"black"}}>

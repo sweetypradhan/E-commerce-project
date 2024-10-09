@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import './Cart.css';
 
 const Cart = () => {
+  // Retrieve cart items from the Redux store
   const cartItems = useSelector(state => state.cart.items);
+  // Get the dispatch function to send actions to the Redux store
   const dispatch = useDispatch();
 
   const handleRemoveFromCart = (productId) => {
-    dispatch({ type: 'REMOVE_FROM_CART', payload: productId }); // Dispatch action object directly
+    dispatch({ type: 'REMOVE_FROM_CART', payload: productId });
   };
 
   const calculateTotalPrice = () => {
@@ -18,13 +20,13 @@ const Cart = () => {
   return (
     <div className="cart">
       <h1>Your Cart</h1>
-      {cartItems.length === 0 ? (
+      {cartItems.length === 0 ? (     // Check if the cart is empty
         <p>Your cart is empty.</p>
       ) : (
         <div>
           <ul className="cart-items">
             {cartItems.map(item => (
-              <li key={item.id} className="cart-item">
+              <li key={item._id} className="cart-item">
                 <div className="cart-item-info">
                   <img src={item.image} alt={item.title} className="cart-item-image" />
                   <div className="cart-item-details">
@@ -35,9 +37,9 @@ const Cart = () => {
                 </div>
                 <button 
                   className="cart-item-remove" 
-                  onClick={() => handleRemoveFromCart(item.id)} // Dispatch action object directly
+                  onClick={() => handleRemoveFromCart(item._id)}
                 >
-                  Remove
+                  Remove One
                 </button>
               </li>
             ))}

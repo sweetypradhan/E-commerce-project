@@ -5,8 +5,8 @@ import './Fragrances.css'; // Import the CSS file for styling
 import { Bars } from 'react-loader-spinner';
 
 const Fragrances = () => {
-  // Use the useFetch hook to fetch products
-  const { data: allProducts, loading, error } = useFetch("https://dummyjson.com/products");
+  const accessToken = localStorage.getItem('accessToken'); // Get access token 
+  const { data, loading, error } = useFetch("http://localhost:5000/api/products", accessToken); 
 
   if (loading) {
     return (
@@ -27,11 +27,14 @@ const Fragrances = () => {
     return <p>Error: {error.message || 'An error occurred'}</p>;
   }
 
-  // Assuming 'allProducts' contains a 'products' array
-  const products = allProducts?.products || [];
+  // Log all products for debugging
+  console.log("All Products:", data);
+
+  // Assuming data is an array of products
+  const products = data || [];
 
   // Filter products for the 'fragrances' category
-  const fragranceProducts = products.filter(product => product.category === 'fragrances');
+  const fragranceProducts = products.filter(product => product.category.toLowerCase() === 'fragrances');
 
   return (
     <div className="fragrances-page">
@@ -39,8 +42,8 @@ const Fragrances = () => {
       {fragranceProducts.length > 0 ? (
         <div className='products-grid'>
           {fragranceProducts.map(product => (
-            <Link to={`/product/${product.id}`} key={product.id} className='product-card'>
-              <img src={product.images[0]} alt={product.title} className='product-image' />
+            <Link to={`/product/${product._id}`} key={product._id} className='product-card'>
+              <img src={product.images} alt={product.title} className='product-image' />
               <div className='product-info'>
                 <h3 className='product-title'>{product.title}</h3>
                 <p className='product-description'>{product.description}</p>
